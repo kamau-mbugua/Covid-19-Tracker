@@ -2,6 +2,7 @@ package kamau_technerd.com.covid19;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -108,5 +109,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goTrackCountries(View view) {
+        Intent intent= new Intent(getApplicationContext(), AffectedCountries.class);
+        startActivity(intent);
+        finish();
+        return;
     }
 }
