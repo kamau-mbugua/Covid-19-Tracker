@@ -7,10 +7,12 @@
     android:background="@color/color_white"
     tools:context=".MainActivity">
 
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewGraph"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="180dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
@@ -110,12 +112,13 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/cardViewGraph"
-        android:layout_above="@+id/btnTrack"
+        android:layout_above="@+id/cvBottom"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         app:cardElevation="10dp"
         app:cardCornerRadius="5dp"
+        android:id="@+id/cardViewGlobal"
           >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -123,7 +126,7 @@
 
 
             <com.leo.simplearcloader.SimpleArcLoader
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/loader"
                 android:layout_centerInParent="true"
                 android:layout_width="60dp"
@@ -413,6 +416,13 @@
                             android:fontFamily="sans-serif-light"/>
 
                     </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/color_two"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        />
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>
@@ -420,18 +430,58 @@
 
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/btnTrack"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:background="@color/color_one"
-        android:text="Track Countries"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:padding="5dp"
-        android:onClick="goTrackCountries"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/cvBottom"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnTrack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="2dp"
+                android:background="@color/color_one"
+                android:onClick="goTrackCountries"
+                android:padding="5dp"
+                android:text="Track countries"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="2dp"
+                ads:adSize="BANNER"
+                android:layout_marginBottom="2dp"
+                ads:adUnitId="ca-app-pub-5908187176288934/8596094259">
+            </com.google.android.gms.ads.AdView>
+
+        </LinearLayout>
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
 
 
 </RelativeLayout>

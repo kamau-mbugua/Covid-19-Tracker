@@ -4,6 +4,7 @@
     package="kamau_technerd.com.covid19">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <dist:module dist:instant="true" />
 
@@ -14,6 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5908187176288934~9382847729"/>
         <activity android:name=".CountryDetails"></activity>
         <activity android:name=".AffectedCountries" />
         <activity android:name=".MainActivity">

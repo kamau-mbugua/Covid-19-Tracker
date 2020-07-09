@@ -24,6 +24,7 @@
     android:layout_height="fill_parent"
     android:id="@+id/listView"
     android:layout_below="@+id/edtSearch"
+    android:layout_above="@+id/adView"
     android:layout_margin="10dp"/>
 
     <com.leo.simplearcloader.SimpleArcLoader
@@ -33,6 +34,18 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         app:arc_style="simple_arc"/>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        ads:adSize="SMART_BANNER"
+        android:layout_marginBottom="2dp"
+        android:layout_alignParentBottom="true"
+        ads:adUnitId="ca-app-pub-5908187176288934/8596094259">
+    </com.google.android.gms.ads.AdView>
 
 
 </RelativeLayout>

@@ -16,7 +16,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class MyCustomAdapter extends ArrayAdapter<CountryModel> {
 

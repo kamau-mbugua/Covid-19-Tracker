@@ -21,6 +21,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.leo.simplearcloader.SimpleArcLoader;
 
 import org.eazegraph.lib.models.PieModel;
@@ -33,6 +38,7 @@ import java.util.List;
 
 public class AffectedCountries extends AppCompatActivity {
 
+    AdView adView;
     EditText edtSearch;
     ListView listView;
     SimpleArcLoader simpleArcLoader;
@@ -50,10 +56,12 @@ public class AffectedCountries extends AppCompatActivity {
         listView = findViewById(R.id.listView);
         simpleArcLoader = findViewById(R.id.loader);
 
+        //Re-name the Action Car and add back Arrow
         getSupportActionBar().setTitle("Affected Countries");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        //intit the faction to fetch the data
         fetchData();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -64,6 +72,7 @@ public class AffectedCountries extends AppCompatActivity {
         });
 
 
+        //implement the search bar of the countries
        edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -83,6 +92,19 @@ public class AffectedCountries extends AppCompatActivity {
 
             }
         });
+
+       //implement the adMob
+
+       adView = findViewById(R.id.adView);
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
 

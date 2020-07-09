@@ -1,10 +1,14 @@
 package kamau_technerd.com.covid19;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -16,6 +20,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.leo.simplearcloader.SimpleArcLoader;
 
 import org.eazegraph.lib.charts.PieChart;
@@ -24,6 +33,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
+
+    AdView adView;
 
     TextView tvCases, tvRecovered, tvCritical, tvActive,
             tvTodayCases, tvTodayDeaths, tvTotalDeaths,tvAffectedCountries;
@@ -48,8 +59,20 @@ public class MainActivity extends AppCompatActivity {
         scrollView = findViewById(R.id.scrollStats);
         simpleArcLoader = findViewById(R.id.loader);
         pieChat = findViewById(R.id.piechart);
+        adView= findViewById(R.id.adView);
         
         fetchData();
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
 
 
     }
@@ -113,5 +136,27 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
         return;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId()==R.id.contact){
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setData(Uri.parse("mailto:"));
+            String[] to={"litsoftwares.co@gmail.com","kelvinkamaumbugua@gmail.com"};
+            intent.putExtra(Intent.EXTRA_EMAIL,to);
+            intent.putExtra(Intent.EXTRA_SUBJECT,"Hi, emailed from Covid 19 tracking app");
+            intent.putExtra(Intent.EXTRA_TEXT,"");
+            intent.setType("message/rfc822");
+            intent.createChooser(intent, "Send Email");
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
